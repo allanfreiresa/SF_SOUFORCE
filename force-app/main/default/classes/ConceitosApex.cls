@@ -39,6 +39,10 @@ public with sharing class ConceitosApex {
         system.debug('Cheguei aqui');
       }
     }
+
+    //Para criar a propria exceção de erro é necessário criar uma 
+    //extensão classe Extension Padrao
+    public class PizzaException extends Exception{}
 }
 
 //ConceitosApex c = new ConceitosApex();c.testandoMetodo();
