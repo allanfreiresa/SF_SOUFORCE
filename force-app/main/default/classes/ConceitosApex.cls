@@ -24,20 +24,26 @@ public with sharing class ConceitosApex {
 
     public void showConceito() {
         //chamar outro metodo nesse metodo
-        NovoConceito('Aqui existe o conceito ed transient');
+        NovoConceito('Aqui existe o conceito de transient');
         System.debug(this.Oculto);
         System.debug(JSON.serialize(this));
     }
 
+    public void fazerPizza(Object pizza) {
+        Boolean isPizza = pizza instanceof Pizza;
+
+        if (!isPizza){
+            throw new PizzaException('Isso não é uma pizza.');
+        }else{
+            ((Pizza)pizza).prepararPizza();
+        }
+
+    }
+
     public void testandoMetodo() {
-        try {
-           Integer x = 1234/0; 
-       // } catch (Exception ex) {
-    } catch (System.MathException ex) {
-            System.debug(ex);            
-     } finally {
-        system.debug('Cheguei aqui');
-      }
+        //String pizza = 'Portuguresa';
+      Portuguesa pizza = new Portuguesa();
+      fazerPizza(Pizza);
     }
 
     //Para criar a propria exceção de erro é necessário criar uma 
