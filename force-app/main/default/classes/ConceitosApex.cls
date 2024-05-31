@@ -29,7 +29,17 @@ public with sharing class ConceitosApex {
         System.debug(JSON.serialize(this));
     }
 
+    public void testandoMetodo() {
+        try {
+           Integer x = 1234/0; 
+       // } catch (Exception ex) {
+    } catch (System.MathException ex) {
+            System.debug(ex);            
+     } finally {
+        system.debug('Cheguei aqui');
+      }
+    }
 }
 
-//ConceitosApex c = new ConceitosApex();c.showConceito();
+//ConceitosApex c = new ConceitosApex();c.testandoMetodo();
 //c.NovoConceito('ttt');
