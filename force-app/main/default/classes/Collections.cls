@@ -2,6 +2,20 @@ public with sharing class Collections {
 
     public void Collections(String[] param) {
 
+
+        //tratamento de dados 
+        //List<Account> acc = new List<Account>();
+
+        /*for (Account a : [SELECT Id, Name FROM Account]) {
+            acc.add(a);  
+            System.debug(a);         
+        }*/
+
+        //System.debug(acc[0]);
+
+        //for (Integer i = 0; i < acc.size(); i ++) {
+       
+        
         List<String> myList = new List<String>();
         myList.add('Parametro do tipo da minha lista');
         myList.add(0,'Primeira Posição');
@@ -66,6 +80,10 @@ public void myMap(){
         System.debug('Valor já existe!');
     }
    
+    System.debug(myMap.keySet());
+    System.debug(myMap.values());
+
+    myMap.remove('Chave 1');
     System.debug(myMap.keySet());
     System.debug(myMap.values());
 
