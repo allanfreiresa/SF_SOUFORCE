@@ -4,32 +4,35 @@ public class AccountControllerExtension {
     public Account account {get;set;}
     
     public AccountControllerExtension(ApexPages.StandardController standardController) {
+        this.account = standardController.getRecord() == null ? new Account(): (Account) standardController.getRecord();
         this.listContact = new List<Contact>();
-        //this.listContact = [SELECT ID, NAME FROM CONTACT WHERE AccountId =: standardController.getId()];
-        this.account = new Account();
+        //this.account = new Account();
+
+        if(this.account.Id != null){
+            //this.account = [Select Id, Name, Phone, Type, Industry From Account Where Id =:this.account.Id];
+            this.listContact = [Select Id, Name, FirstName, LastName, Email From Contact Where AccountId =: this.account.Id];
+        }
      }
 
     public PageReference addContact(){
         this.listContact.add(new Contact());
-
         return null;
     }
 
     public PageReference deleteContact(){
         String index = ApexPages.currentPage().getParameters().get('index');
         this.listContact.remove(Integer.valueOf(index));
-
         return null;
     }
 
     public PageReference saveAccount(){
-        upsert account;
-   
+        upsert account;   
+
         for(Contact contact: this.listContact ){
             contact.AccountId = account.Id;
         }
 
-        insert this.listContact;
+        upsert this.listContact;
         ApexPages.StandardController controller = new ApexPages.StandardController(account);
         return controller.view();
 

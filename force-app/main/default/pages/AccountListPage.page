@@ -1,0 +1,52 @@
+<apex:page 
+    id="AccountPage" 
+    showHeader="true"     
+    sidebar="false"    
+    docType="html-5.0"  
+    standardController="Account"
+    recordSetVar="accounts">    
+    
+    <apex:form id= "listForm">
+        <apex:pageBlock title= "Account List">
+                <apex:pageBlockButtons location= "top">
+                    <apex:commandButton value= "New Account" action = "{!URLFOR($Action.Account.New)}"/>
+                </apex:pageBlockButtons>
+                <apex:selectList value="{!filterId}" size="1">
+                        <apex:selectOptions value="{!listViewOptions}"/>    
+                        <apex:actionSupport event="onchange" reRender="listForm"/>                    
+                </apex:selectList>
+                <apex:pageBlockTable value= "{!accounts}" var="account" rows="{!PageSize}">
+                    <apex:column>
+                        <apex:facet name="header"></apex:facet>
+                        <apex:commandLink value="Edit" action="{!URLFOR($Action.Account.Edit,account.Id)}"/>
+                    </apex:column>
+                    <apex:column>
+                        <apex:facet name="header">Name{!PageSize}</apex:facet>
+                        <apex:outputLink value="/{!account.Id}">{!account.Name}</apex:outputLink>
+                    </apex:column>
+                    <apex:column value="{!account.Phone}"/>                       
+                    <apex:column value="{!account.Website}"/>
+                </apex:pageBlockTable>
+                <apex:outputPanel layout="block" style="display:flex; flex-direction:row; justify-content:space-between">     
+                    <div>
+                        {!PageNumber} of {! CEILING(ResultSize / PageSize) }        
+                    </div>
+                    <div>
+                        <apex:commandButton action="{!First}" value="<< First"/>
+                        <apex:commandButton action="{!Previous}" value="< Previous"/>
+                        <apex:commandButton action="{!Next}" value="Next >"/>
+                        <apex:commandButton action="{!Last}" value="Last >>"/>
+                    </div>
+                    <div>
+                        <apex:selectList value="{!PageSize}" size="1">
+                            <apex:selectOption itemValue="5" itemLabel="5"/>
+                            <apex:selectOption itemValue="10" itemLabel="10"/>
+                            <apex:selectOption itemValue="15" itemLabel="15"/>
+                            <apex:selectOption itemValue="20" itemLabel="20"/>
+                            <apex:actionSupport event="onchange" reRender="listForm"/>  
+                        </apex:selectList>
+                    </div>               
+                </apex:outputPanel>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
