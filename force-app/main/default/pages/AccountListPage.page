@@ -18,7 +18,8 @@
                 <apex:pageBlockTable value= "{!accounts}" var="account" rows="{!PageSize}">
                     <apex:column>
                         <apex:facet name="header"></apex:facet>
-                        <apex:commandLink value="Edit" action="{!URLFOR($Action.Account.Edit,account.Id)}"/>
+                        <apex:commandLink value="Edit" action="{!URLFOR($Action.Account.Edit,account.Id)}"/> |
+                        <apex:commandLink value="PDF" action="{!URLFOR($Page.AccountPDF,null,[Id=account.Id])}" target="_blank"/>
                     </apex:column>
                     <apex:column>
                         <apex:facet name="header">Name{!PageSize}</apex:facet>

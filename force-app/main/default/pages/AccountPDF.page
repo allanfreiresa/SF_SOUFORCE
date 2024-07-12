@@ -1,0 +1,56 @@
+<apex:page 
+    id="AccountPDF" 
+    renderAs="pdf"
+    showHeader="false"     
+    sidebar="false"    
+    docType="html-5.0"  
+    applyBodyTag="false"
+    applyHtmlTag="false"
+    controller="AccountPDFController">    
+ 
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>PDF</title>
+        <style>
+            ul{
+                list-style: none;
+            }
+        </style>       
+    </head>
+    <body>
+        <section>
+            <h1>Account Information</h1>
+            Name: {!currentAccount.Name}
+            Phone: {!currentAccount.Phone}
+            Website: {!currentAccount.Website}
+        </section>
+        <section>
+            <h1>Contact Information</h1>
+            <ul>
+                <apex:repeat value="{!ContactsInformation}" var="conInfo">
+                    <li>
+                      {!conInfo}
+                    </li>
+                </apex:repeat>
+            </ul>
+        </section>
+        <section>
+            <h1>Terms and Conditions</h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quam dolor, rutrum a mauris eu, maximus tincidunt nunc. Proin congue blandit orci a malesuada. Mauris odio massa, ultrices sed urna nec, feugiat pulvinar erat. Sed dapibus arcu magna, vitae aliquam lacus placerat eu. Praesent eu accumsan diam, sit amet malesuada massa. Sed sodales congue augue, vitae luctus arcu suscipit quis. Sed pellentesque metus nisl, vel molestie velit hendrerit vel.
+
+                Duis pharetra est a est lobortis accumsan. Fusce interdum pretium nunc. Nam condimentum, nibh vel vulputate pretium, diam risus aliquam sem, a egestas arcu nisi in lectus. Nulla pharetra odio id felis ultricies, id porttitor lorem faucibus. Phasellus in finibus elit, et ultrices ante. Sed vitae lacinia tortor. Nulla tempus pretium diam vel faucibus. Mauris dictum sed sapien non commodo. Duis erat mauris, varius ut tincidunt eget, iaculis vitae tellus. Fusce placerat porta nisi, in volutpat dui aliquam a. Quisque enim ante, mollis sit amet massa id, tempus gravida nisi. Integer dignissim sapien ac velit pulvinar, in tempus ante volutpat.
+                
+                Aliquam rhoncus, est at gravida suscipit, lectus metus cursus elit, nec elementum ipsum sem efficitur erat. Duis tempor, sem vitae tincidunt tincidunt, lacus sapien finibus ante, semper dictum urna ante in risus. Etiam vel pulvinar justo, vel feugiat velit. In quis vulputate libero, nec venenatis purus. Sed vulputate enim sit amet sagittis eleifend. Donec pellentesque quam sit amet augue ornare, eu iaculis orci finibus. Maecenas sit amet molestie odio, in volutpat nunc. Vestibulum cursus risus vel dolor lobortis cursus. Quisque ultrices lobortis convallis. Quisque enim ex, iaculis at ornare a, suscipit blandit tellus. Cras ut malesuada risus, vel elementum est. Nullam a lacinia justo. Nunc ut lectus a leo gravida tincidunt sit amet ut urna.
+                
+                Duis ac elit a odio condimentum fringilla. Maecenas aliquet bibendum nunc at gravida. Suspendisse hendrerit condimentum neque et dapibus. Aliquam vestibulum ullamcorper dui, id commodo risus porttitor id. Nulla eget venenatis arcu, quis faucibus justo. Suspendisse fringilla eros vel ante congue, sed malesuada orci fermentum. Etiam leo orci, varius in vehicula sed, mollis at turpis. Proin in gravida lorem. Mauris aliquam quam malesuada sollicitudin accumsan. Fusce maximus dapibus rhoncus. Proin facilisis semper imperdiet. Sed ut augue risus.
+                
+                Sed non ultrices eros. Maecenas nec quam vel dolor sollicitudin pretium interdum nec nibh. Phasellus volutpat ante eu urna sollicitudin eleifend. Cras blandit nulla eget sem gravida dictum. Pellentesque gravida aliquam felis, vitae hendrerit diam venenatis vel. Aliquam ultricies tellus at tortor mattis, nec sodales elit dapibus. Nulla dictum, dolor at semper accumsan, risus magna semper libero, ac euismod leo lorem sit amet mi. Sed in lorem sollicitudin, molestie eros finibus, eleifend arcu. In augue turpis, interdum id risus at, posuere aliquet lacus. Etiam sed aliquet massa, eu congue sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam ac mattis tortor. Pellentesque non nunc congue ante luctus lacinia. Donec finibus finibus ante, ut efficitur justo viverra eu.
+            </p>
+        </section>
+    </body>
+</html>
+   
+</apex:page>
