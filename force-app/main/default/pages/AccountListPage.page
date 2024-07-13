@@ -23,7 +23,7 @@
                     </apex:column>
                     <apex:column>
                         <apex:facet name="header">Name{!PageSize}</apex:facet>
-                        <apex:outputLink value="/{!account.Id}">{!account.Name}</apex:outputLink>
+                        <apex:outputLink value="/apex/ViewAccountDetail?Id={!account.Id}">{!account.Name}</apex:outputLink>
                     </apex:column>
                     <apex:column value="{!account.Phone}"/>                       
                     <apex:column value="{!account.Website}"/>

@@ -1,11 +1,14 @@
 public class AccountControllerExtension {
 
     public  List<Contact> listContact {get;set;}
+    List<Contact> listContactToDelete;
     public Account account {get;set;}
+
     
     public AccountControllerExtension(ApexPages.StandardController standardController) {
         this.account = standardController.getRecord() == null ? new Account(): (Account) standardController.getRecord();
         this.listContact = new List<Contact>();
+        this.listContactToDelete = new List<Contact>();
         //this.account = new Account();
 
         if(this.account.Id != null){
@@ -20,8 +23,15 @@ public class AccountControllerExtension {
     }
 
     public PageReference deleteContact(){
+
         String index = ApexPages.currentPage().getParameters().get('index');
-        this.listContact.remove(Integer.valueOf(index));
+
+        Contact con = this.listContact.remove(Integer.valueOf(index));
+
+        If(con.Id != null){
+            listContactToDelete.add(con);
+        }
+
         return null;
     }
 
@@ -33,7 +43,14 @@ public class AccountControllerExtension {
         }
 
         upsert this.listContact;
+
+        if(!listContactToDelete.isEmpty()){
+
+            delete this.listContactToDelete;
+        }
+
         ApexPages.StandardController controller = new ApexPages.StandardController(account);
+
         return controller.view();
 
     }

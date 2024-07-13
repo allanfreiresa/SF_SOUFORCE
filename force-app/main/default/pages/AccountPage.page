@@ -5,11 +5,7 @@
     docType="html-5.0"  
     standardController="Account"
     extensions="AccountControllerExtension">    
-    <apex:form id="AccountForm" >
-        <apex:actionFunction name="addContact" action="{!addContact}" reRender="contactInformation" immediate="true"/> 
-        <apex:actionFunction name="deleteContact" action="{!deleteContact}" reRender="contactInformation" immediate="true">
-            <apex:param name="index" value=""/>
-            </apex:actionFunction>
+    <apex:form id="AccountForm" >       
             <apex:pageBlock mode="edit">
                 <apex:pageBlockButtons location= "top" >
                     <apex:commandButton action="{!saveAccount}" value="Save"/>
@@ -19,42 +15,8 @@
                     <apex:inputField value="{!account.Name}"/>
                     <apex:inputField value="{!account.Site}"/>
                     <apex:inputField value="{!account.Phone}"/>                   
-                </apex:pageBlockSection>                  
-                <apex:pageBlockSection title="Contact Information" columns="1" id="contactInformation"> 
-                    <apex:pageBlockSectionItem>
-                        <apex:commandButton value= "Add Contact" action="{!addContact}"/>
-                    </apex:pageBlockSectionItem>                               
-                    <apex:pageBlockSectionItem>
-                        <apex:variable var="index" value="{!0}" />
-                        <apex:pageBlockTable value= "{!listContact}" var="contact">     
-                            <apex:column>
-                                <apex:facet name="header">
-                                                                     
-                                </apex:facet>
-                                <a href="_" onclick="deleteContact({!index});return false;">Delete</a>
-                                <apex:variable var="index" value="{!index + 1}"></apex:variable>
-                            </apex:column>                           
-                            <apex:column>
-                                <apex:facet name="header">
-                                    First Name                                    
-                                </apex:facet>
-                                <apex:inputField value = "{!contact.FirstName}"/>
-                            </apex:column>                          
-                            <apex:column>
-                                <apex:facet name="header">
-                                    Last Name                                    
-                                </apex:facet>
-                                <apex:inputField value = "{!contact.LastName}"/>
-                            </apex:column>                           
-                            <apex:column>
-                                <apex:facet name="header">
-                                    Email                                   
-                                </apex:facet>
-                                <apex:inputField value = "{!contact.Email}"/>
-                            </apex:column>                                                 
-                        </apex:pageBlockTable>
-                    </apex:pageBlockSectionItem>    
-                </apex:pageBlockSection>    
+                </apex:pageBlockSection>      
+                <c:ContactList isEditMode="true" list="{!listContact}" newContactAction ="{!addContact}" deleteContactAction="{!deleteContact}" /> 
             </apex:pageBlock> 
      </apex:form>
 </apex:page>
