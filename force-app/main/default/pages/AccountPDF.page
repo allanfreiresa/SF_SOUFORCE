@@ -1,5 +1,4 @@
-<apex:page 
-    id="AccountPDF" 
+<apex:page id="AccountPDF" 
     renderAs="pdf"
     showHeader="false"     
     sidebar="false"    

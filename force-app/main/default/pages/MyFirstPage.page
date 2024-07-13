@@ -1,4 +1,4 @@
-<apex:page id="MyFirstPage" docType="Html-5.0" showHeader="True" sidebar = "False">
+<apex:page id="MyFirstPage" docType="Html-5.0" showHeader="True" sidebar="False">
 
     <style> 
     .myButton {

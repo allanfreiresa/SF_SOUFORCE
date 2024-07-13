@@ -1,4 +1,4 @@
-<apex:component>
+<apex:component >
     
     <apex:attribute name="isEditMode" type="Boolean" required="true" description="" /> 
     <apex:attribute name="isDetail" type="Boolean" description="" default="false" />
@@ -20,7 +20,7 @@
         }
    </style>
     <apex:pageBlockSection title="Contact Information" columns="1" id="contactInformation"> 
-        <apex:pageBlockSectionItem>
+        <apex:pageBlockSectionItem >
             <Button type="button" onclick="addContact();" class="{!IF(isEditMode,'','hidden-button')}">
                 Add Contact
             </Button>
@@ -31,38 +31,38 @@
                 Save Contacts
             </Button>     
         </apex:pageBlockSectionItem>                               
-        <apex:pageBlockSectionItem>
+        <apex:pageBlockSectionItem >
             <apex:variable var="index" value="{!0}" />
-            <apex:pageBlockTable value= "{!list}" var="contact">     
-                <apex:column>
+            <apex:pageBlockTable value="{!list}" var="contact">     
+                <apex:column >
                     <apex:facet name="header">                                                         
                     </apex:facet>
                     <a href="_" onclick="deleteContact({!index});return false;">Delete</a>
                     <apex:variable var="index" value="{!index + 1}"></apex:variable>
                 </apex:column>                           
-                <apex:column>
+                <apex:column >
                     <apex:facet name="header">
                         First Name                                    
                     </apex:facet>
                     <!-- <apex:inputField value = "{!contact.FirstName}"/>  -->
-                    <apex:inputField value = "{!contact.FirstName}" rendered="{!isEditMode}"/> 
-                    <apex:outputField value = "{!contact.FirstName}" rendered="{!NOT(isEditMode)}"/>  
+                    <apex:inputField value="{!contact.FirstName}" rendered="{!isEditMode}"/> 
+                    <apex:outputField value="{!contact.FirstName}" rendered="{!NOT(isEditMode)}"/>  
                 </apex:column>                          
-                <apex:column>
+                <apex:column >
                     <apex:facet name="header">
                         Last Name                                    
                     </apex:facet>
                     <!-- <apex:inputField value = "{!contact.LastName}"/> -->
-                    <apex:inputField value = "{!contact.LastName}" rendered="{!isEditMode}"/> 
-                    <apex:outputField value = "{!contact.LastName}" rendered="{!NOT(isEditMode)}"/> 
+                    <apex:inputField value="{!contact.LastName}" rendered="{!isEditMode}"/> 
+                    <apex:outputField value="{!contact.LastName}" rendered="{!NOT(isEditMode)}"/> 
                 </apex:column>                           
-                <apex:column>
+                <apex:column >
                     <apex:facet name="header">
                         Email                                   
                     </apex:facet>
                     <!-- <apex:inputField value = "{!contact.Email}"/> -->
-                    <apex:inputField value = "{!contact.Email}" rendered="{!isEditMode}"/> 
-                    <apex:outputField value = "{!contact.Email}" rendered="{!NOT(isEditMode)}"/>
+                    <apex:inputField value="{!contact.Email}" rendered="{!isEditMode}"/> 
+                    <apex:outputField value="{!contact.Email}" rendered="{!NOT(isEditMode)}"/>
                 </apex:column>                                                 
             </apex:pageBlockTable>
         </apex:pageBlockSectionItem>    

@@ -1,16 +1,15 @@
-<apex:page 
-    id="ViewAccountDetail" 
+<apex:page id="ViewAccountDetail" 
     showHeader="true"     
     sidebar="false"    
     docType="html-5.0"  
     standardController="Account"
     extensions="ViewAccountDetailController">
 
-    <apex:form>
+    <apex:form >
         <apex:pageBlock mode="maindetail">
-            <apex:detail title="true" subject= "{!Account.Id}"/>     
+            <apex:detail title="true" subject="{!Account.Id}"/>     
             <!-- <c:ContactList list="{!listContact}" newContactAction ="{!newContact}" deleteContactAction="{!deleteContact}"/>   	  -->
-            <c:ContactList isDetail='true' isEditMode="{!isEditMode}" list="{!listContact}" newContactAction ="{!newContact}" deleteContactAction="{!deleteContact}" editContactAction="{!editContacts}" saveContactAction="{!saveContacts}"/>
+            <c:ContactList isDetail="true" isEditMode="{!isEditMode}" list="{!listContact}" newContactAction="{!newContact}" deleteContactAction="{!deleteContact}" editContactAction="{!editContacts}" saveContactAction="{!saveContacts}"/>
         </apex:pageBlock>
     </apex:form>
 

@@ -1,14 +1,14 @@
 <apex:page docType="html-5.0" Controller="SOQLInjectionController" lightningStylesheets="true">
-    <apex:form id = "form"> 
+    <apex:form id="form"> 
         <p class="{ !IF(ISBLANK(error),'slds-hiden','') }" required="true" >
             {!error}
         </p>
-        <apex:input type="text" value = "{!inputName}" required="true"/>
-        <apex:commandButton action = "{!searchAccounts}" styleClass="slds-vf-button_brand" value = "searchAccounts" />
+        <apex:input type="text" value="{!inputName}" required="true"/>
+        <apex:commandButton action="{!searchAccounts}" styleClass="slds-vf-button_brand" value="searchAccounts" />
         <p class = "slds-m-vertical_medium">
                 <span class="slds-text-heading_large"> Account List</span>
                 <ul class="slds-has-dividers_around_space">
-                    <apex:repeat value="{!accounts}" var = "acc">
+                    <apex:repeat value="{!accounts}" var="acc">
                         <!-- <li class="slds-item"> {!acc.Name} - {!acc.Phone}</li> -->
                         <li class="slds-item"> {!acc.AccName} - {!acc.AccPhone}</li>
                     </apex:repeat>

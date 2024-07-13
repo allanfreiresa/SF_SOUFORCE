@@ -1,27 +1,26 @@
-<apex:page 
-    id="AccountPage" 
+<apex:page id="AccountPage" 
     showHeader="true"     
     sidebar="false"    
     docType="html-5.0"  
     standardController="Account"
     recordSetVar="accounts">    
     
-    <apex:form id= "listForm">
-        <apex:pageBlock title= "Account List">
-                <apex:pageBlockButtons location= "top">
-                    <apex:commandButton value= "New Account" action = "{!URLFOR($Action.Account.New)}"/>
+    <apex:form id="listForm">
+        <apex:pageBlock title="Account List">
+                <apex:pageBlockButtons location="top">
+                    <apex:commandButton value="New Account" action="{!URLFOR($Action.Account.New)}"/>
                 </apex:pageBlockButtons>
                 <apex:selectList value="{!filterId}" size="1">
                         <apex:selectOptions value="{!listViewOptions}"/>    
                         <apex:actionSupport event="onchange" reRender="listForm"/>                    
                 </apex:selectList>
-                <apex:pageBlockTable value= "{!accounts}" var="account" rows="{!PageSize}">
-                    <apex:column>
+                <apex:pageBlockTable value="{!accounts}" var="account" rows="{!PageSize}">
+                    <apex:column >
                         <apex:facet name="header"></apex:facet>
                         <apex:commandLink value="Edit" action="{!URLFOR($Action.Account.Edit,account.Id)}"/> |
                         <apex:commandLink value="PDF" action="{!URLFOR($Page.AccountPDF,null,[Id=account.Id])}" target="_blank"/>
                     </apex:column>
-                    <apex:column>
+                    <apex:column >
                         <apex:facet name="header">Name{!PageSize}</apex:facet>
                         <apex:outputLink value="/apex/ViewAccountDetail?Id={!account.Id}">{!account.Name}</apex:outputLink>
                     </apex:column>
