@@ -24,7 +24,7 @@
             <Button type="button" onclick="addContact();" class="{!IF(isEditMode,'','hidden-button')}">
                 Add Contact
             </Button>
-            <Button type="button" onclick="aditContacts();" class="{!IF(isEditMode,'hidden-button','')}">
+            <Button type="button" onclick="editContacts();" class="{!IF(isEditMode,'hidden-button','')}">
                 Edit Contacts
             </Button>
             <Button type="button" onclick="saveContacts();" class="{!IF(isDetail && isEditMode,'','hidden-button')}">

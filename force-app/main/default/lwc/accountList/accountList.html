@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title="Lista de Contas">
+        <div class="slds-m-bottom_medium">
+            <lightning-input 
+                label="Nome da Conta" 
+                value={searchKey} 
+                onchange={handleSearchKeyChange}>
+            </lightning-input>
+            <lightning-button 
+                label="Buscar" 
+                onclick={handleSearch} 
+                class="slds-m-top_small">
+            </lightning-button>
+        </div>
+        <template if:true={accounts}>
+            <lightning-datatable
+                data={accounts}
+                columns={columns}
+                key-field="Id">
+            </lightning-datatable>
+        </template>
+        <template if:true={error}>
+            <p>{error.body.message}</p>
+        </template>
+    </lightning-card>
+</template>
