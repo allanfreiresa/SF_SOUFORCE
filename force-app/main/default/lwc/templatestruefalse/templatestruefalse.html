@@ -1,0 +1,34 @@
+<template>
+    <h1>For:each</h1>
+    <template if:true={data}>
+        <ul>
+            <template for:each={data} for:item="row" for:index="index">
+                <template if:false={index}>
+                    <li key={row.name}><strong>{index} ) {row.name} - {row.idade} anos </strong></li>
+                </template>
+                <template if:true={index}>
+                    <li key={row.name}>{index} ) {row.name} - {row.idade} anos</li>
+                </template>
+            </template>
+        </ul>
+        <br/>
+    </template>
+    <h1>Iterator</h1>
+    <template if:true={data}>
+        <ul>
+            <template iterator:it ={data}> 
+                <template if:true={it.first}>
+                    <li key={it.value.name}><strong>{it.index} ) {it.value.name} - {it.value.idade} anos</strong></li>
+                </template>
+                <template if:false={it.first}>
+                    <template if:false={it.last}>
+                        <li key={it.value.name}>{it.index} ) {it.value.name} - {it.value.idade} anos</li>
+                    </template>
+                </template>
+                <template if:true={it.last}>
+                    <li key={it.value.name}><strong>{it.index} ) {it.value.name} - {it.value.idade} anos</strong></li>
+                </template>
+            </template>
+        </ul>
+    </template> 
+</template>
