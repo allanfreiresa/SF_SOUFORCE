@@ -10,4 +10,12 @@
       <target>lightning__RecordPage</target>
       <target>lightning__Tab</target>
     </targets>
+
+    <targetConfigs>
+        <targetConfig targets="lightning__AppPage,lightning__HomePage,lightning__RecordPage">
+          <property name="mode" label="Mode" default="dismissable" type="string" datasource="dismissable,paster,sticky" />
+          <property name="buttonLabel" label="Label do botão" default="Me clique" type="string" />     
+        </targetConfig>
+
+    </targetConfigs>
 </LightningComponentBundle>

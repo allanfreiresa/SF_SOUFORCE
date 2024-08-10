@@ -1,4 +1,4 @@
-    import { LightningElement } from 'lwc';
+    import { LightningElement , api} from 'lwc';
 import { ShowToastEvent} from 'lightning/platformShowToastEvent'
 
 export default class ToastOptions extends LightningElement {
@@ -10,14 +10,15 @@ export default class ToastOptions extends LightningElement {
         {label: 'Error', value: 'error'}
     ]
 
-    modes = [
-        {label: 'Dismissable', value: 'dismissable'},
-        {label: 'Pester', value: 'pester'},
-        {label: 'Sticky', value: 'sticky'}
-    ]
+    // modes = [
+    //     {label: 'Dismissable', value: 'dismissable'},
+    //     {label: 'Pester', value: 'pester'},
+    //     {label: 'Sticky', value: 'sticky'}
+    // ]
 
     variant = 'info';
-    mode = 'dismissable'
+    @api mode;
+    @api buttonLabel;
 
     handlerVariantChanged(event){
         this.variant = event.detail.value;
