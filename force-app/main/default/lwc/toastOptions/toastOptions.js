@@ -1,48 +1,74 @@
-    import { LightningElement , api} from 'lwc';
-import { ShowToastEvent} from 'lightning/platformShowToastEvent'
+import { LightningElement, wire } from 'lwc';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent'
+import { loadScript } from 'lightning/platformResourceLoader';
+import pubsubLib from '@salesforce/resourceUrl/PubSub';
+import {CurrentPageReference} from 'lightning/navigation';
+//import { NavigationMixin } from 'lightning/navigation';
 
-export default class ToastOptions extends LightningElement {
+
+
+//export default class ToastOptions extends NavigationMixin(LightningElement) {
+    export default class ToastOptions extends LightningElement {
 
     variants = [
-        {label: 'Info', value: 'info'},
-        {label: 'Success', value: 'success'},
-        {label: 'Warning', value: 'warning'},
-        {label: 'Error', value: 'error'}
+        { label: 'Info', value: 'info' },
+        { label: 'Success', value: 'success' },
+        { label: 'Warning', value: 'warning' },
+        { label: 'Error', value: 'error' }
     ]
 
-    // modes = [
-    //     {label: 'Dismissable', value: 'dismissable'},
-    //     {label: 'Pester', value: 'pester'},
-    //     {label: 'Sticky', value: 'sticky'}
-    // ]
+    modes = [
+        { label: 'Dismissable', value: 'dismissable' },
+        { label: 'Pester', value: 'pester' },
+        { label: 'Sticky', value: 'sticky' }
+    ]
 
     variant = 'info';
-    @api mode;
-    @api buttonLabel;
+    mode = 'dismissable'
 
-    handlerVariantChanged(event){
+     @wire(CurrentPageReference) pageRef;   
+
+
+    connectedCallback() {
+        loadScript(this, pubsubLib).then(() => {
+            window.console.log('PubSub Carregado com sucesso!!!')
+        }).catch(error => {
+            window.console.log(error);
+        })
+    }
+
+    handlerVariantChanged(event) {
         this.variant = event.detail.value;
 
+           window.pubsub.fireEvent(this.pageRef, 'selectedVariant',{
+            detail: {
+                variant: this.variant
+            }            
+         });
+
+    }
+
+    disconnectedCallback() {
+        window.pubsub.unregisterAllListeners(this);
+
     }
 
 
-    handlerModeChanged(event){
+    handlerModeChanged(event) {
         this.mode = event.detail.value;
-        
+
     }
 
 
-    handlerToastChanged(event){
+    handlerToastChanged(event) {
         const toast = new ShowToastEvent({
-            "title":"Titulo do Toast",
-            "message":"mensagem",
-            "variant":this.variant,
-            "mode":this.mode
+            "title": "Titulo do Toast",
+            "message": "mensagem",
+            "variant": this.variant,
+            "mode": this.mode
         });
 
-        this.dispatchEvent(toast);        
+        this.dispatchEvent(toast);
     }
-
-
 
 }

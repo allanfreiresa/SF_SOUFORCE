@@ -1,5 +1,5 @@
 <template>
     <lightning-combobox label="Variant" value={variant} options={variants} onchange={handlerVariantChanged}></lightning-combobox>
-    </br>>
-    <lightning-button label={buttonLabel} onclick={handlerToastChanged}></lightning-button>
+    <lightning-combobox label="Mode" value={mode} options={modes} onchange={handlerModeChanged}></lightning-combobox> 
+    <lightning-button label="Show Toast" onclick={handlerToastChanged}></lightning-button> 
 </template>
