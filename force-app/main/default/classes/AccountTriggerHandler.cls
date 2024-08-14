@@ -27,10 +27,12 @@ public class AccountTriggerHandler {
             
         }     
 
-        if(!System.isFuture() && !System.isBatch()){
-            //(new TravelAccountHelper()).createOpportunities(travelAccountList);
-            TravelAccountHelper.createOpportunities(travelAccountList);
-        }
+        System.enqueueJob(new TravelAccountQueueable(newAccountList));
+
+        // if(!System.isFuture() && !System.isBatch()){
+        //     //(new TravelAccountHelper()).createOpportunities(travelAccountList);
+        //     TravelAccountHelper.createOpportunities(travelAccountList);
+        // }
 
     }
 }
