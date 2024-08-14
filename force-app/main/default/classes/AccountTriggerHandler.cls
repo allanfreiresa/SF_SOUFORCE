@@ -12,4 +12,25 @@ public class AccountTriggerHandler {
         }
 
     }
+
+
+    public static void onAfterInsert(List<Account> newAccountList, Map<Id,Account> newAccountMap) {
+        List<String> travelAccountList = new List<String>();
+
+        for(Account newAccount : newAccountList){
+            if(newAccount.RecordTypeId == Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Travel_Detail').getRecordTypeId())
+            travelAccountList.add(newAccount.Id);
+            if(!System.isFuture() && !System.isBatch()){
+                TravelAccountHelper.filldress(newAccount.Id);
+            }
+            
+            
+        }     
+
+        if(!System.isFuture() && !System.isBatch()){
+            //(new TravelAccountHelper()).createOpportunities(travelAccountList);
+            TravelAccountHelper.createOpportunities(travelAccountList);
+        }
+
+    }
 }
